@@ -21,7 +21,7 @@ if (leadsFromLocalStorage){
 }
 
 
-inputBtn.addEventListener("click", function() {
+inputBtn.addEventListener("click", () => {
     Leads.push(inputEl.value)
     inputEl.value = ""
     localStorage.setItem("myLeads", JSON.stringify(Leads))
@@ -29,28 +29,28 @@ inputBtn.addEventListener("click", function() {
 })
 
 function render(leads){
-    let listItems = ""
+    let Items = ""
 
     for (let i=0; i < leads.length; i++){
-        listItems += ` <li>
+        Items += ` <li>
                             <a target='_blank' href='${leads[i]}'>${leads[i]}</a>
                        </li>
         `
     }
-    ulEl.innerHTML = listItems
+    ulEl.innerHTML = Items
 }
 
 // we are listening the double click event
-deleteBtn.addEventListener("dblclick", function() {
+deleteBtn.addEventListener("dblclick", () => {
     localStorage.clear()
     Leads = []
     render(Leads)
 })
 
-tabBtn.addEventListener("click", function(){
+tabBtn.addEventListener("click", () => {
 
     // tabs is a array with a object that a key named url
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
 
         Leads.push(tabs[0].url)
         localStorage.setItem("Leads", JSON.stringify(Leads))
